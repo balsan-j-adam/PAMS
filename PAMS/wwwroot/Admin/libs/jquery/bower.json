@@ -1,0 +1,14 @@
+{
+  "name": "jquery",
+  "main": "dist/jquery.js",
+  "license": "Fouz",
+  "ignore": [
+    "package.json"
+  ],
+  "keywords": [
+    "jquery",
+    "javascript",
+    "browser",
+    "library"
+  ]
+}

@@ -1,0 +1,77 @@
+﻿@model PAMS.Models.All_Model_BInds
+@{
+    ViewData["Title"] = "Add_Users";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Add Users</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="Add_Users">
+                            <div class="form-group mb-3">
+                                <label class="control-label">User Name</label>
+                                <input asp-for="all_Users.User_name" type="text" class="form-control" />
+                                <span asp-validation-for="all_Users.User_name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="control-label">User email</label>
+                                <input asp-for="all_Users.User_email" type="email" class="form-control" />
+                                <span asp-validation-for="all_Users.User_email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="control-label">User Pass</label>
+                                <input asp-for="all_Users.User_pass" type="text" class="form-control" />
+                                <span asp-validation-for="all_Users.User_pass" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="control-label">User Department </label>
+                                <select asp-for="all_Users.User_department_id" class="form-select">
+                                    <option value="" disabled>-- Select Department --</option>
+                                    @foreach(var i in Model.all_Departments_list ){
+                                    <option value="@i.Department_Id">@i.Department_Name</option>
+                                        
+                                    }
+                                    <option value="">Other</option>
+                                </select>
+                                <span asp-validation-for="all_Users.User_name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="control-label">User Position </label>
+                                <select asp-for="all_Users.User_Position_id" class="form-select">
+                                    <option value="" disabled>-- Select Position --</option>
+                                    @foreach (var i in Model.all_Positions_list)
+                                    {
+                                        <option value="@i.Position_Id">@i.Position_Name</option>
+                                        
+                                    }
+                                    <option value="">Other</option>
+                                </select>
+                                <span asp-validation-for="all_Users.User_name" class="text-danger"></span>
+                            </div>  <div class="form-group mb-3">
+                                <label class="control-label">User Role </label>
+                                <select asp-for="all_Users.User_Role" class="form-select">
+                                    <option value=""  disabled>-- Select Role --</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="User">User</option>
+                                </select>
+                                <span asp-validation-for="all_Users.User_name" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                                <a asp-action="All_Positions" class="btn btn-secondary">Back to List</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

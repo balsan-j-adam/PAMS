@@ -1,0 +1,90 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <!--  Row 1 -->
+    
+    <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title fw-semibold mb-4">Audit</h5>
+                        <a style="background-color:black; color:white" class="btn btn-dark " asp-action="Create" asp-controller="Audit">Add Audit</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-nowrap mb-0 align-middle">
+                            <thead class="text-dark fs-4">
+                                <tr>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Html.DisplayNameFor(Model => Model.Id)</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">tml.DisplayNameFor(Model => Model.Title)</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Html.DisplayNameFor(Model => Model.Description)</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Html.DisplayNameFor(Model => Model.Auditor)</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Html.DisplayNameFor(Model => Model.Status)</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Actions</h6>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                    <tr>
+                                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">i.Id</h6></td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">i.Title</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <p class="mb-0 fw-normal">i.Description</p>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="badge bg-success rounded-3 fw-semibold">i.Auditor</span>
+                                            </div>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="rounded-3 fw-semibold">i.Status</span>
+                                            </div>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <!-- Split dropend button -->
+                                            <div class="btn-group dropend">
+                                                <button type="button" class="btn btn-dark">
+                                                    Action
+                                                </button>
+                                                <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <span class="visually-hidden">Toggle Dropend</span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" asp-controller="Audit" asp-action="Edit"  asp-route-id="i.Id">Edit</a></li>
+                                                    <li><a class="dropdown-item" asp-controller="Audit" asp-action="Delete" asp-route-id="i.Id">Delete</a></li>
+                                                    <li><a class="dropdown-item" asp-controller="Audit" asp-action="Details" asp-route-id="i.Id">Details</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

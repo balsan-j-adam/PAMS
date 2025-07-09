@@ -1,0 +1,326 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <!--  Row 1 -->
+    <div class="row">
+        <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body">
+                    <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                        <div class="mb-3 mb-sm-0">
+                            <h5 class="card-title fw-semibold">Project & Audit Overview</h5>
+                        </div>
+                    </div>
+                    <div id="executiveKPIChart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Audit and Project Status -->
+                    <div class="card overflow-hidden">
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-9 fw-semibold">Audit & Project Status</h5>
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h4 class="fw-semibold mb-3">Total: 100 Tasks</h4>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                                            <i class="ti ti-check text-success"></i>
+                                        </span>
+                                        <p class="text-dark me-1 fs-3 mb-0">Updated</p>
+                                        <p class="fs-3 mb-0">this week</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-4">
+                                            <span class="round-8 bg-success rounded-circle me-2 d-inline-block"></span>
+                                            <span class="fs-2">Projects</span>
+                                        </div>
+                                        <div class="me-4">
+                                            <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                                            <span class="fs-2">Audits</span>
+                                        </div>
+                                        <div>
+                                            <span class="round-8 bg-warning rounded-circle me-2 d-inline-block"></span>
+                                            <span class="fs-2">Pending</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="d-flex justify-content-center">
+                                        <div id="breakup"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <!-- Monthly Completed Tasks -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-start">
+                                <div class="col-8">
+                                    <h5 class="card-title mb-9 fw-semibold"> Monthly Completed Tasks </h5>
+                                    <h4 class="fw-semibold mb-3">155 Tasks</h4>
+                                    <div class="d-flex align-items-center pb-1">
+                                        <span class="me-2 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                                            <i class="ti ti-arrow-up-right text-success"></i>
+                                        </span>
+                                        <p class="text-dark me-1 fs-3 mb-0">+12%</p>
+                                        <p class="fs-3 mb-0">compared to last month</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="d-flex justify-content-end">
+                                        <div class="text-white bg-primary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                                            <i class="ti ti-check fs-6"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="earning"></div> <!-- You can rename this to match chart ID if needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <h5 class="card-title fw-semibold mb-4">Adminstrators</h5>
+                    <div class="table-responsive">
+                        <table class="table text-nowrap mb-0 align-middle">
+                            <thead class="text-dark fs-4">
+                                <tr>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Html.DisplayNameFor(Model=>Model.Id)</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Html.DisplayNameFor(Model => Model.UserName)</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Html.DisplayNameFor(Model => Model.Email)</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Html.DisplayNameFor(Model => Model.Roles)</h6>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                               
+                                <tr>
+                                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">i.Id</h6></td>
+                                    <td class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-1">i.UserName</h6>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <p class="mb-0 fw-normal">i.Email</p>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <div class="d-flex align-items-center gap-2">
+                                                
+                                                    <span class="badge bg-danger rounded-3 fw-semibold">
+                                                        No role assigned yet
+                                                    </span>
+                                                
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+
+
+
+<script>
+   let executiveKPIChart = null;
+
+function initChart() {
+    if (executiveKPIChart) {
+        executiveKPIChart.destroy();
+    }
+
+    const options = {
+        chart: {
+            type: 'bar',
+            height: 400,
+            toolbar: { show: false },
+            foreColor: '#333',
+            fontFamily: 'Inter, sans-serif',
+            background: '#ffffff',
+            redrawOnParentResize: true,
+            animations: { enabled: false },
+            events: {
+                mounted: function () {
+                    resizeChart();
+                }
+            }
+        },
+        series: [
+            {
+                name: "Audits Conducted",
+                data: [20, 25, 22, 30, 28, 35]
+            },
+            {
+                name: "Projects Completed",
+                data: [18, 22, 20, 26, 24, 30]
+            },
+            {
+                name: "Pending Tasks (%)",
+                data: [15, 12, 18, 10, 9, 8]
+            }
+        ],
+                colors: ['#000000', '#808080', '#D3D3D3'],
+        plotOptions: {
+            bar: {
+                borderRadius: 8,
+                horizontal: false,
+                columnWidth: '38%',
+                endingShape: 'rounded'
+            }
+        },
+        dataLabels: { enabled: false },
+        stroke: {
+            show: true,
+            width: 1,
+            colors: ['#ffffff']
+        },
+        xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            labels: {
+                style: {
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    colors: '#333'
+                }
+            }
+        },
+        yaxis: [
+            {
+                title: {
+                    text: 'Count',
+                    style: {
+                        fontSize: '13px',
+                        fontWeight: 600,
+                        color: '#333'
+                    }
+                },
+                labels: {
+                    style: { color: '#333' }
+                }
+            },
+            {
+                opposite: true,
+                title: {
+                    text: 'Pending (%)',
+                    style: {
+                        fontSize: '13px',
+                        fontWeight: 600,
+                        color: '#333'
+                    }
+                },
+                labels: {
+                    style: { color: '#333' }
+                }
+            }
+        ],
+        tooltip: {
+            shared: true,
+            intersect: false,
+            theme: 'light',
+            y: {
+                formatter: function (value, { seriesIndex }) {
+                    return (seriesIndex === 2 ? value + "%" : value + " Tasks");
+                }
+            }
+        },
+        legend: {
+            position: 'top',
+            horizontalAlign: 'center',
+            fontWeight: 500,
+            fontSize: '14px',
+            labels: {
+                colors: '#333'
+            }
+        },
+        grid: {
+            borderColor: '#eee',
+            strokeDashArray: 5
+        },
+        responsive: [
+            {
+                breakpoint: 992,
+                options: {
+                    chart: { height: 350 },
+                    legend: { position: 'bottom' }
+                }
+            },
+            {
+                breakpoint: 768,
+                options: {
+                    chart: { height: 300 },
+                    plotOptions: { bar: { columnWidth: '55%' } },
+                    yaxis: [{ show: true }, { show: true }],
+                    legend: { position: 'bottom', horizontalAlign: 'left' }
+                }
+            },
+            {
+                breakpoint: 576,
+                options: {
+                    chart: { height: 280 },
+                    xaxis: { labels: { rotate: -45 } },
+                    legend: { fontSize: '12px' }
+                }
+            }
+        ]
+    };
+
+    executiveKPIChart = new ApexCharts(document.querySelector("#executiveKPIChart"), options);
+    executiveKPIChart.render();
+}
+
+function resizeChart() {
+    const container = document.querySelector('#executiveKPIChart');
+    if (container && executiveKPIChart) {
+        executiveKPIChart.updateOptions({
+            chart: {
+                width: container.clientWidth
+            }
+        }, false, false);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initChart);
+
+let resizeTimer;
+window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resizeChart, 150);
+});
+
+document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) {
+        setTimeout(initChart, 300);
+    }
+});
+
+</script>

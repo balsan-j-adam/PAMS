@@ -1,0 +1,32 @@
+﻿@model PAMS.Models.All_departments
+@{
+    ViewData["Title"] = "Add_Departments";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Add Departments</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="Add_Departments">
+                            <div class="form-group mb-3">
+                                <label  class="control-label">Department Name</label>
+                                <input asp-for="Department_Name" class="form-control" />
+                                <span asp-validation-for="Department_Name"   class="text-danger"></span>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                                <a asp-action="All_Departments" class="btn btn-secondary">Back to List</a>
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
