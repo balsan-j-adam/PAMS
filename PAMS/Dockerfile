@@ -1,23 +1,25 @@
-# Use the official .NET SDK image for building
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
-# Set working directory inside the container
+# Base image for runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
+EXPOSE 80
 
-# Copy everything and restore dependencies
-COPY . . 
+# Build image
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copy csproj and restore separately for layer caching
+COPY *.csproj ./
 RUN dotnet restore
 
-# Build the application
-RUN dotnet publish -c Release -o out
+# Copy everything else and publish
+COPY . . 
+RUN dotnet publish -c Release -o /app/publish
 
-# Use the smaller ASP.NET Core runtime image for the final image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-
+# Final runtime image
+FROM base AS final
 WORKDIR /app
+COPY --from=build /app/publish .
 
-# Copy the published build from the previous stage
-COPY --from=build /app/out .
-
-# Set the entry point for the container
+# Replace ISB.dll with your actual output DLL if it's different
 ENTRYPOINT ["dotnet", "PAMS.dll"]
+
