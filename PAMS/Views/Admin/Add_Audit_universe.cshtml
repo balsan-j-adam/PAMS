@@ -1,0 +1,74 @@
+﻿@model PAMS.Models.All_Model_BInds
+@{
+    ViewData["Title"] = "Add_Audit_universe";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Add Users</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="Add_Audit_universe">
+                          
+                            <div class="form-group mb-3">
+                                <label class="control-label">Audit Department </label>
+                                <select asp-for="all_Audits_Universe.Audit_Universe_Dept_Id" class="form-select">
+                                
+                                    @foreach (var i in Model.all_Departments_list)
+                                    {
+                                        <option value="@i.Department_Id">@i.Department_Name</option>
+
+                                    }
+                                   
+                                </select>
+                                <span asp-validation-for="all_Users.User_name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="control-label">Risk Category </label>
+                                <select asp-for="all_Audits_Universe.Audit_Universe_Risk_Id" class="form-select">
+                                
+                                    @foreach (var i in Model.Risk_Categories)
+                                    {
+                                        <option value="@i.Risk_Id">@i.Risk_Category_Name</option>
+
+                                    }
+                                   
+                                </select>
+                            
+                            </div>  <div class="form-group mb-3">
+                                <label class="control-label">Audit Impact </label>
+                                <select asp-for="all_Audits_Universe.Audit_Universe_Impact" class="form-select">
+                                   
+                                    <option value="High">High</option>
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                </select>
+                               
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="control-label">Audit likelihood </label>
+                                <select asp-for="all_Audits_Universe.Audit_Universe_likelihood" class="form-select">
+
+                                    <option value="High">High</option>
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                </select>
+
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                                <a asp-action="All_Audit_universe" class="btn btn-secondary">Back to List</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,61 @@
+﻿@model PAMS.Models.All_Model_BInds
+@{
+    ViewData["Title"] = "Assign_task";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<form asp-action="Assign_task" method="post">
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Assign Task</h4>
+            </div>
+            <div class="card-body">
+               
+                    <input asp-for="all_task_simple.task_Audit_Id" value="@Model.audit_Assign.Audit_Assign_id" class="form-control" type="hidden" placeholder="Enter Task Title" />
+
+                <input asp-for="all_task_simple.task_Assign_AuditorId
+
+" value="@accessor.HttpContext.Session.GetInt32("Id")" class="form-control" type="hidden" placeholder="Enter Task Title" />
+                <div class="mb-3">
+                    <label class="form-label">Select Task</label>
+                    <select asp-for="all_task_simple.task_QuestionId"  class="form-select" >
+                        @foreach (var user in Model.audit_Questions_list)
+                        {
+                            <option value="@user.Audit_Questions_Id">@user.Checklist.Checklist_question </option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Due Date</label>
+                    <input asp-for="all_task_simple.Due_date" class="form-control" type="date" />
+                </div>
+
+                <!-- ✅ Multi-select dropdown -->
+                <div class="mb-3">
+                    <label class="form-label">Select Users</label>
+                    <select asp-for="AssignedUserIds" class="form-select" multiple size="5" style="cursor: pointer;">
+                        @foreach (var user in Model.all_Users_list)
+                        {
+                            <option value="@user.User_id">@user.User_name</option>
+                        }
+                    </select>
+                </div>
+
+                <!-- ✅ Display Selected Users -->
+                <div class="mb-3">
+                    <label class="form-label">Selected Users:</label>
+                    <ul id="selectedUsersList" class="list-group"></ul>
+                </div>
+
+                <!-- ✅ Hidden inputs for selected users -->
+                <div id="hiddenUserInputs"></div>
+
+                <button type="submit" class="btn btn-success">Assign Task</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,35 @@
+﻿@model PAMS.Models.Risk_Categories
+@{
+    ViewData["Title"] = "Add_Risk_Categories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Add Users</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="Add_Risk_Categories">
+                            <div class="form-group mb-3">
+                                <label class="control-label">Risk Name</label>
+                                <input asp-for="Risk_Category_Name" type="text" class="form-control" />
+                                <span asp-validation-for="Risk_Category_Name" class="text-danger"></span>
+                            </div>
+                           
+                         
+
+                            <div class="form-group mt-3">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                                <a asp-action="All_Risk_Categories" class="btn btn-secondary">Back to List</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

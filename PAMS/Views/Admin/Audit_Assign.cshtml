@@ -1,0 +1,80 @@
+﻿@model IEnumerable<PAMS.Models.All_audit_universe>
+@{
+    ViewData["Title"] = "Audit_Assign";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-lg-12 d-flex align-items-stretch">
+        <div class="card w-100">
+            <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Adminstrators</h5>
+                <div class="table-responsive">
+                    <table class="table text-nowrap mb-0 align-middle">
+                        <thead class="text-dark fs-4">
+
+                            <tr>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0"> ID</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Dept Name</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Risk Ctegory</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Risk Ratio</h6>
+                                </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Actions</h6>
+                                    </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">@i.Audit_Universe_Id</h6></td>
+                                    <td class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-1">@i.Departments.Department_Name</h6>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <p class="mb-0 fw-normal">@i.Risks.Risk_Category_Name</p>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <p class="mb-0 fw-normal">@i.Audit_Universe_Risk_ratio</p>
+                                    </td>
+
+                                        <td class="border-bottom-0">
+                                            <!-- Split dropend button -->
+                                            <div class="btn-group dropend">
+                                                <button type="button" class="btn btn-dark">
+                                                    Action
+                                                </button>
+                                                <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <span class="visually-hidden">Toggle Dropend</span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" asp-controller="Admin" asp-action="Add_Assign_audit" asp-route-id="@i.Audit_Universe_Id">Assign</a></li>
+                                                    <li><a class="dropdown-item" asp-controller="Audit" asp-action="Edit" asp-route-id="@i.Audit_Universe_Id">Edit</a></li>
+                                                    <li><a class="dropdown-item" asp-controller="Admin" asp-action="Delete" asp-route-id="@i.Audit_Universe_Id">Delete</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

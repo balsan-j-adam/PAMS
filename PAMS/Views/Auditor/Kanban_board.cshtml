@@ -1,0 +1,125 @@
+﻿@model IEnumerable<PAMS.Models.Task_response>
+@{
+    ViewData["Title"] = "Kanban_board";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form asp-controller="Auditor" asp-action="UpdateTaskStatus" method="post">
+    @Html.AntiForgeryToken()
+    <div class="board">
+        <div class="status-column " data-status="Pending">
+            <h3 class="bg-primary  bg-gradient p-2">Pending</h3>
+            @foreach (var task in Model.Where(t => t.Task_Status == "Pending"))
+            {
+                <div class="task-box" draggable="true" data-id="@task.Response_Id">
+                    @task.Task.Audit_Questionss.Checklist.Checklist_question
+                </div>
+            }
+        </div>
+        <div class="status-column" data-status="Urgent">
+            <h3 class=" bg-warning p-2 bg-gradient">Urgent</h3>
+            @foreach (var task in Model.Where(t => t.Task_Status== "Urgent"))
+            {
+                <div class="task-box" draggable="true" data-id="@task.Response_Id">
+                    @task.Task.Audit_Questionss.Checklist.Checklist_question
+                </div>
+            }
+        </div>
+
+        <div class="status-column" data-status="Working">
+            <h3 class="bg-primary  bg-gradient p-2">Working</h3>
+            @foreach (var task in Model.Where(t => t.Task_Status == "Working"))
+            {
+                <div class="task-box"  data-id="@task.Response_Id">
+                    @task.Task.Audit_Questionss.Checklist.Checklist_question
+                </div>
+            }
+        </div>
+        <div class="status-column" data-status="Complete">
+            <h3 class=" bg-warning bg-gradient p-2">Complete</h3>
+            @foreach (var task in Model.Where(t => t.Task_Status == "Completed"))
+            {
+                <div class="task-box" data-id="@task.Response_Id">
+                    @task.Task.Audit_Questionss.Checklist.Checklist_question
+                </div>
+            }
+        </div>
+    </div>
+</form>
+
+<style>
+    .board {
+        display: flex;
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .status-column {
+        width: 300px;
+        padding: 10px;
+        border: 2px dashed #999;
+        min-height: 300px;
+    }
+
+    .task-box {
+        background-color: #f1f1f1;
+        padding: 10px;
+        margin: 10px 0;
+        cursor: grab;
+    }
+
+    .status-column.dragover {
+        background-color: #d3f1ff;
+    }
+</style>
+
+<script>
+    // ✅ Only allow drop in Pending and Urgent
+    const allowedStatuses = ["Pending", "Urgent"];
+
+    document.querySelectorAll(".status-column").forEach(zone => {
+        const status = zone.getAttribute("data-status");
+
+        if (allowedStatuses.includes(status)) {
+            zone.addEventListener("dragover", function (e) {
+                e.preventDefault();
+                this.classList.add("dragover");
+            });
+
+            zone.addEventListener("dragleave", function () {
+                this.classList.remove("dragover");
+            });
+
+            zone.addEventListener("drop", function (e) {
+                e.preventDefault();
+                this.classList.remove("dragover");
+
+                const taskId = e.dataTransfer.getData("id");
+                const newStatus = this.getAttribute("data-status");
+                const taskBox = document.querySelector(`[data-id='${taskId}']`);
+                this.appendChild(taskBox);
+
+                // AJAX to update status in DB
+                fetch('/Auditor/UpdateTaskStatus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    },
+                    body: JSON.stringify({ id: taskId, status: newStatus })
+                }).then(res => {
+                    if (!res.ok) {
+                        alert("❌ Status update failed.");
+                    }
+                });
+            });
+        }
+    });
+
+    // ✅ Allow drag
+    document.addEventListener("dragstart", function (e) {
+        if (e.target.classList.contains("task-box")) {
+            e.dataTransfer.setData("id", e.target.getAttribute("data-id"));
+        }
+    });
+</script>

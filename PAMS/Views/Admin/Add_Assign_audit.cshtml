@@ -1,0 +1,83 @@
+﻿@model PAMS.Models.All_Model_BInds
+@{
+    ViewData["Title"] = "Add_Assign_audit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Add Users</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="Add_Assign_audit">
+                            <div class="form-group mb-3">
+                                <label class="control-label">Audit Objective</label>
+                                <input asp-for="audit_Assign.Audit_Assign_Objective" type="text" class="form-control" />
+                                
+                            </div>
+
+                            <input asp-for="audit_Assign.Audit_Assign_uni_id"   value="@Model.all_Audits_Universe.Audit_Universe_Id" class="form-control" />
+                            <input  value="@Model.all_Audits_Universe.Audit_Universe_Status" class="form-control" />
+                            <div class="form-group mb-3">
+                                <label class="control-label">Audit Department</label>
+                                <input  value="@Model.all_Audits_Universe.Departments.Department_Name"  class="form-control" readonly/>
+                              
+                            </div>
+                           
+                            <div class="form-group mb-3">
+                                <label class="control-label">Auditor </label>
+                                <select asp-for="audit_Assign.Audit_Assign_auditor_id" class="form-select">
+                                   
+                                    @foreach (var i in Model.all_Users_list)
+                                    {
+                                        <option value="@i.User_id">@i.User_name</option>
+
+                                    }
+                                
+                                </select>
+                              
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="control-label">Audit Start Date</label>
+                                <input asp-for="audit_Assign.Audit_Assign_start_date" type="date" class="form-control" />
+
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="control-label">Audit End Date</label>
+                                <input asp-for="audit_Assign.Audit_Assign_end_date" type="date" class="form-control" />
+
+                            </div>
+
+                            <div class="card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">Checklist Questions</h5>
+                                </div>
+                            </div>
+                                <div class="form-group mb-3">
+                                    <label>Checklist Questions</label>
+                                    @for (int i = 0; i < Model.tick_Checklist_list.Count; i++)
+                                    {
+                                        <div class="form-check">
+                                            <input asp-for="tick_Checklist_list[i].Audit_Check_IsSelected" class="form-check-input" />
+                                            <input asp-for="tick_Checklist_list[i].Audit_Check_Id" type="hidden" />
+                                            <label class="form-check-label">@Model.tick_Checklist_list[i].Audit_Check_Question</label>
+                                        </div>
+                                    }
+                                </div>
+
+                            <div class="form-group mt-3">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                                <a asp-action="Audit_Assign" class="btn btn-secondary">Back to List</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,52 @@
+﻿ @model PAMS.Models.All_Model_BInds
+ @{ 
+     ViewData["Title"] = "Start_task"; 
+     Layout = "~/Views/Shared/_AdminLayout.cshtml"; 
+ } 
+
+
+<div class="container-fluid"> 
+     <div class="container-fluid"> 
+         <div class="card"> 
+             <div class="card-body"> 
+                 <h5 class="card-title fw-semibold mb-4">Task</h5> 
+                 <div class="card"> 
+                     <div class="card-body"> 
+                         <form asp-action="Start_task" enctype="multipart/form-data" method="post"> 
+                            
+                           
+
+                           
+                             <div class="form-group mb-3"> 
+                                 <label class="control-label">Audit task id</label> 
+                                 <input   asp-for="task_Response_Img.Response_Id" value="@Model.task_Response.Response_Id" class="form-control" readonly/> 
+
+                             </div> 
+                        
+
+                             <div class="form-group mb-3"> 
+                                 <label class="control-label">Audit Find</label>
+                                <input asp-for="task_Response_Img.Response_Finding" type="text" class="form-control" />
+
+                            </div> 
+
+                             <div class="form-group mb-3">
+                                 <label class="control-label">Audit Evidence</label>
+                                <input asp-for="task_Response_Img.Response_EvidenceFilePath" type="file" class="form-control" />
+
+                            </div> 
+
+
+                             <div class="form-group mt-3"> 
+                                 <input type="submit" value="Create" class="btn btn-primary" /> 
+                                 <a asp-action="Audit_Assign" class="btn btn-secondary">Back to List</a> 
+                             </div> 
+
+                         </form> 
+                     </div> 
+                 </div> 
+             </div> 
+         </div> 
+     </div> 
+ </div> 
+

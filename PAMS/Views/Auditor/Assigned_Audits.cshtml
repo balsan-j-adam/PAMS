@@ -1,0 +1,99 @@
+﻿@model IEnumerable<PAMS.Models.Assign_Audit>
+@{
+    ViewData["Title"] = "Assigned_Audits";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <!--  Row 1 -->
+
+    <div class="row">
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                  
+                    <div class="table-responsive">
+                        <table class="table text-nowrap mb-0 align-middle border">
+                            <thead class="text-dark fs-4">
+                                <tr class="border">
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Audit Objective </h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Audit Start Date</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Audit End Date</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Audit Department</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Audit Risk</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Audit Questions</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Actions</h6>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var i in Model)
+                                {
+                                    <tr class="border">
+                                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">@i.Audit_Assign_Objective</h6></td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">@i.Audit_Assign_start_date</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">@i.Audit_Assign_end_date</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">@i.Audit_Universe.Departments.Department_Name</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">@i.Audit_Universe.Audit_Universe_Risk_ratio</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                        @foreach (var c in i.Assigned_Questions)
+                                        {
+                                            <li class="">
+                                                @c.Checklist?.Checklist_question
+                                            </li>
+                                        }
+                                        </td>
+
+                                        <td class="border-bottom-0">
+                                            <!-- Split dropend button -->
+                                            <div class="btn-group dropend">
+                                                <button type="button" class="btn btn-dark">
+                                                    Action
+                                                </button>
+                                                <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <span class="visually-hidden">Toggle Dropend</span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" asp-controller="Auditor" asp-action="Assign_task" asp-route-id="@i.Audit_Assign_id">Assign Task</a></li>
+                                                    @* <li><a class="dropdown-item" asp-controller="Admin" asp-action="Dlt_Audit_universe" asp-route-id="@i.Audit_Universe_Id">Delete</a></li> *@
+
+                                                </ul>
+                                            </div>
+                                        </td>
+
+                                    </tr>   
+
+
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

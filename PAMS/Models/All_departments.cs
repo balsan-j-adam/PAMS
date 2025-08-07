@@ -10,5 +10,9 @@ namespace PAMS.Models
 
 
         public virtual ICollection<All_users> Users { get; set; }
-    }
+
+        public virtual ICollection<All_audit_universe> AuditsUnivers { get; set; }
+
+        public virtual ICollection<Add_checklists> Checklists { get; set; }
+     }
 }

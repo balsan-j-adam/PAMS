@@ -40,134 +40,104 @@
 
                         <li class="nav-small-cap">Audit Modules</li>
 
+                        @if (accessor.HttpContext.Session.GetString("Role") == "Admin")
+                        {
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Admin" asp-action="All_Checklist">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Audit Checklist</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Admin" asp-action="All_Audit_universe">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Audit Universe</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Admin" asp-action="All_Risk_Categories">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Risk Catogories</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Admin" asp-action="All_Users">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Users</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Admin" asp-action="All_Departments">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Departments</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Admin" asp-action="All_Positions">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Positions</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Admin" asp-action="Audit_Assign">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Audits Assign</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Admin" asp-action="Ongoing_Audits">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>All Audits </span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Admin" asp-action="Pending_task">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Pending task </span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Admin" asp-action="Complete_task">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Complete task </span>
+                                </a>
+                            </li>
+                        }
                         <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="Admin" asp-action="All_Users">
+                            <a class="sidebar-link" asp-controller="Admin" asp-action="Logout">
                                 <i class="fas fa-clipboard-check"></i>
-                                <span>Users</span>
+                                <span>Logout </span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="Admin" asp-action="All_Departments">
-                                <i class="fas fa-clipboard-check"></i>
-                                <span>Departments</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="Admin" asp-action="All_Positions">
-                                <i class="fas fa-clipboard-check"></i>
-                                <span>Positions</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="Audit" asp-action="Index">
-                                <i class="fas fa-clipboard-check"></i>
-                                <span>Audits</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="AuditEntities" asp-action="Index">
-                                <i class="fas fa-building"></i>
-                                <span>Audit Entity</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="AuditTasks" asp-action="Index">
-                                <i class="fas fa-tasks"></i>
-                                <span>Audit Tasks</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="Evidences" asp-action="Index">
-                                <i class="fas fa-file-upload"></i>
-                                <span>Evidence</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="AuditReports" asp-action="Index">
-                                <i class="fas fa-file-alt"></i>
-                                <span>Audit Reports</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="CorrectiveActions" asp-action="Index">
-                                <i class="fas fa-check-double"></i>
-                                <span>Corrective Actions</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-controller="Feedback" asp-action="Index">
-                                <i class="fas fa-check-double"></i>
-                                <span>Feedbacks</span>
-                            </a>
-                        </li>
-
-
-
-                        <li class="nav-small-cap">Project Module</li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="Index" asp-controller="Projects">
-                                <i class="fas fa-tasks"></i>
-                                <span>Projects</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="AdminIndex" asp-controller="Admin">
-                                <i class="fas fa-project-diagram"></i>
-                                <span>Project Assign</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="Index" asp-controller="ProjectMilestone">
-                                <i class="fas fa-flag-checkered"></i>
-                                <span>Project Milestones</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="Index" asp-controller="ProjectComments">
-                                <i class="fas fa-comments"></i>
-                                <span>Project Comments</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="Index" asp-controller="ProjectTasks">
-                                <i class="fas fa-check-square"></i>
-                                <span>Project Tasks</span>
-                            </a>
-                        </li>
-
-
-
-
-                        <li class="nav-small-cap">User Module</li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="Index" asp-controller="Notification">
-                                <i class="fas fa-user-cog"></i>
-                                <span>Notifications</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="Index" asp-controller="UserNotification">
-                                <i class="fas fa-bell"></i>
-                                <span>User Notifications</span>
-                            </a>
-                        </li>
-
-
-                        <li class="nav-small-cap">Administration</li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" asp-action="AdminIndex" asp-controller="Admin">
-                                <i class="fas fa-user-cog"></i>
-                                <span>User Management</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="#">
-                                <i class="fas fa-cog"></i>
-                                <span>Settings</span>
-                            </a>
-                        </li>
+                        @if (accessor.HttpContext.Session.GetString("Position") == "Auditor")
+                        {
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Auditor" asp-action="Assigned_Audits">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Audits </span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Auditor" asp-action="All_tasks">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Audits </span>
+                                </a>
+                            </li>
+                        }
+                         @if (accessor.HttpContext.Session.GetString("Position") == "Auditee")
+                        {
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-controller="Auditor" asp-action="Working_task">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>My task </span>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </nav>
             </div>

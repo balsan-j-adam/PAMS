@@ -1,0 +1,124 @@
+﻿@model IEnumerable<PAMS.Models.Task_response> 
+@{  
+    ViewData["Title"] = "all_tasks";
+    Layout = "~/views/shared/_adminlayout.cshtml";
+} 
+
+<div class="container-fluid"> 
+
+
+    <div class="row"> 
+        <div class="col-lg-12 d-flex align-items-stretch"> 
+            <div class="card w-100"> 
+                <div class="card-body p-4"> 
+
+                    <div class="table-responsive"> 
+                        <table class="table text-nowrap mb-0 align-middle"> 
+                            <thead class="text-dark fs-4"> 
+                                <tr> 
+                                    <th class="border-bottom-0"> 
+                                        <h6 class="fw-semibold mb-0">task id</h6>                                    </th> 
+                                    <th class="border-bottom-0"> 
+                                        <h6 class="fw-semibold mb-0">audit objective</h6> 
+                                    </th> 
+                                    <th class="border-bottom-0"> 
+                                        <h6 class="fw-semibold mb-0">task assigned</h6>
+                                    </th> 
+                                    <th class="border-bottom-0"> 
+                                        <h6 class="fw-semibold mb-0">task</h6> 
+                                    </th> 
+                                    <th class="border-bottom-0">                                          <h6 class="fw-semibold mb-0">task Status</h6> 
+                                    </th> 
+
+                                    <th class="border-bottom-0"> 
+                                        <h6 class="fw-semibold mb-0">Finding</h6> 
+                                    </th> 
+                                    <th class="border-bottom-0"> 
+                                        <h6 class="fw-semibold mb-0">Evidence</h6> 
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Assigned date</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Due date</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Assigned by</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Action</h6>
+                                    </th>
+                                </tr> 
+                            </thead> 
+                            <tbody> 
+                                @foreach (var i in Model) 
+                                { 
+                                    <tr> 
+                                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">@i.Response_TaskId</h6></td> 
+
+                                        <td class="border-bottom-0"> 
+                                            <h6 class="fw-semibold mb-1">@i.Task.Assign_Audits?.Audit_Assign_Objective</h6> 
+                                        </td> 
+
+                                        <td class="border-bottom-0"> 
+                                            <h6 class="fw-semibold mb-1">@i.Auditee?.User_name</h6> 
+                                        </td> 
+                                        <td class="border-bottom-0"> 
+                                            <h6 class="fw-semibold mb-1">@i.Task.Audit_Questionss.Checklist.Checklist_question</h6> 
+                                        </td> 
+
+                                        <td class="border-bottom-0"> 
+                                            <h6 class="fw-semibold mb-1">@i.Task_Status</h6> 
+                                        </td> 
+
+                                        <td class="border-bottom-0"> 
+                                            <h6 class="fw-semibold mb-1">@i.Response_Finding</h6> 
+                                        </td> 
+                                        <td class="border-bottom-0"> 
+                                            <h6 class="fw-semibold mb-1">@i.Response_EvidenceFilePath</h6> 
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">@i.Task.Assigned_date</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">@i.Task.Due_date</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">@i.Task.All_userss.User_name</h6>
+                                        </td>
+                                        @if (i.Task_Status == "Pending")
+                                        {
+
+                                            <td class="border-bottom-0">
+                                                <!-- Split dropend button -->
+                                                <div class="btn-group dropend">
+                                                    <button type="button" class="btn btn-dark">
+                                                        Action
+                                                    </button>
+                                                    <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <span class="visually-hidden">Toggle Dropend</span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" asp-controller="Auditor" asp-action="Start_task" asp-route-id="@i.Response_Id">Start Task</a></li>
+                                                        @* <li><a class="dropdown-item" asp-controller="Admin" asp-action="Dlt_Audit_universe" asp-route-id="@i.Audit_Universe_Id">Delete</a></li> *@
+
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        }else{
+                                            <td class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-1">@i.Task_Status</h6>
+                                            </td>
+                                        }
+                                    </tr> 
+                                } 
+
+                      </tbody> 
+                         </table> 
+                     </div> 
+                 </div> 
+             </div> 
+         </div> 
+     </div> 
+
+  </div>
