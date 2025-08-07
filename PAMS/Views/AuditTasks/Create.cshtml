@@ -1,0 +1,71 @@
+﻿
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Audit Tasks</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="Create" method="post">
+                            <div  class="text-danger"></div>
+                            <div class="form-group mb-3">
+                                <label  class="control-label">Html.DisplayNameFor(Model => Model.Title)</label>
+                                <input class="form-control" />
+                                <span  class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label  class="control-label">Html.DisplayNameFor(Model => Model.Description)</label>
+                                <input  class="form-control" />
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label  class="control-label">Html.DisplayNameFor(Model => Model.Deadline)</label>
+                                <input  class="form-control" />
+                                <span  class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label  class="control-label">Html.DisplayNameFor(Model => Model.Status)</label>
+                                <input  class="form-control" />
+                                <span  class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label  class="control-label">Html.DisplayNameFor(Model => Model.AssignedToUser.UserName)</label>
+                                <select  class="form-control" >
+                                    <option value="">-- Select User --</option>
+                                </select>
+                                <span  class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label  class="control-label">Html.DisplayNameFor(Model => Model.Audit.Id)</label>
+                                <select  class="form-control" >
+                                    <option value="">-- Select Audit Id --</option>
+                                </select>
+                                <span  class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label  class="control-label">Html.DisplayNameFor(Model => Model.DataRequest)</label>
+                                <input  class="form-control" />
+                                <span  class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label  class="control-label">Html.DisplayNameFor(Model => Model.Conclusion)</label>
+                                <input  class="form-control" />
+                                <span  class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <input type="submit" value="Submit" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
